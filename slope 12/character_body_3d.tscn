@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://ci82rlh7emm2b"]
+[gd_scene load_steps=5 format=3 uid="uid://ci82rlh7emm2b"]
 
 [ext_resource type="Script" path="res://character_body_3d.gd" id="1_3topc"]
 
@@ -6,14 +6,16 @@
 
 [sub_resource type="SphereMesh" id="SphereMesh_skaty"]
 
+[sub_resource type="Skin" id="Skin_51xuf"]
+
 [node name="CharacterBody3D" type="CharacterBody3D"]
 script = ExtResource("1_3topc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 shape = SubResource("SphereShape3D_u7ybi")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 mesh = SubResource("SphereMesh_skaty")
+skin = SubResource("Skin_51xuf")
 skeleton = NodePath("../..")

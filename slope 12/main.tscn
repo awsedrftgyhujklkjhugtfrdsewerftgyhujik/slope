@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://nm0a5lj0o1h6"]
+[gd_scene load_steps=8 format=3 uid="uid://nm0a5lj0o1h6"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_q6rkc"]
 [ext_resource type="PackedScene" uid="uid://ci82rlh7emm2b" path="res://character_body_3d.tscn" id="2_bw8cf"]
@@ -9,10 +9,19 @@ size = Vector3(1000, 2, 50)
 [sub_resource type="BoxMesh" id="BoxMesh_kybso"]
 size = Vector3(1000, 2, 50)
 
+[sub_resource type="Skin" id="Skin_pmhlj"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_scmof"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uq3op"]
+metallic = 1.0
+metallic_texture = SubResource("ImageTexture_scmof")
+
 [node name="Main" type="Node"]
 script = ExtResource("1_q6rkc")
 
 [node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.7991, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
 transform = Transform3D(0.906308, -0.422618, 0, 0.422618, 0.906308, 0, 0, 0, 1, -412, -210, 0)
@@ -20,15 +29,23 @@ shape = SubResource("BoxShape3D_48dtl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
 transform = Transform3D(0.906308, -0.422618, 0, 0.422618, 0.906308, 0, 0, 0, 1, -412, -212, 0)
+layers = 127
 mesh = SubResource("BoxMesh_kybso")
+skin = SubResource("Skin_pmhlj")
+surface_material_override/0 = SubResource("StandardMaterial3D_uq3op")
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("2_bw8cf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.14038, 7.7177, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
-transform = Transform3D(-4.37114e-08, -0.469472, 0.882948, 0, 0.882948, 0.469472, -1, 2.05213e-08, -3.85949e-08, 36.9734, 21.9851, 0)
-fov = 135.9
+transform = Transform3D(-4.33441e-08, -0.579751, 0.814794, -5.6548e-09, 0.814794, 0.579751, -1, 2.05213e-08, -3.85949e-08, 20.5893, 14.5995, 0)
+fov = 80.0
 near = 10.0
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="CharacterBody3D/Camera3D"]
-transform = Transform3D(1, 1.04974e-09, 5.7673e-10, -1.06515e-09, 0.999625, 0.0273982, -5.47754e-10, -0.0273982, 0.999625, 0, 7.83397, 4.16541)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="CharacterBody3D"]
+transform = Transform3D(-4.3695e-08, -0.493487, 0.869753, -1.19763e-09, 0.869753, 0.493487, -1, 2.05213e-08, -3.85949e-08, 20.5893, 18.9012, -6.11067e-13)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="CharacterBody3D"]
+transform = Transform3D(0.974629, -9.78385e-09, 0.223829, -0.223829, -4.26024e-08, 0.974629, 0, -1, -4.37114e-08, 9.53674e-07, 25.4293, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="CharacterBody3D"]
